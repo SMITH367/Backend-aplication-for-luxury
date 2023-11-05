@@ -8,9 +8,15 @@ const database = require("../database")
 
 
 //Getting all cotizations
-router.get('/cotizations', async (req, res) => {
-    const cotizations = await cotization.find()
-    res.send(cotizations)
+router.get('/cotizations', verifyToken, (req, res) => {
+    jwt.verify(req.auth, 'secretKey', async (err, data) => {
+        if (err) {
+            res.send(err);
+        } else {
+            const cotizations = await cotization.find()
+            res.send(cotizations)
+        }
+    })
 })
 
 //Searching a cotization

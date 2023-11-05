@@ -19,7 +19,6 @@ router.get('/boats/:boat', async (req, res) => {
     const getBoat = await boat.findOne({
         "name": req.params.boat
     })
-    console.log(getBoat)
     res.send(getBoat)
 })
 
