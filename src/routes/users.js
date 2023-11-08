@@ -1,6 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const user = require('../models/users')
+const client = require('../models/client')
 const jwt = require('jsonwebtoken')
 const verifyToken = require('../Auth/verifyToken')
 const bcryptjs = require('bcryptjs')
@@ -8,10 +9,17 @@ const database = require("../database")
 
 
 
-//Getting all users
-router.get('/user', async (req, res) => {
-    const viewUser = await user.find()
-    res.send(viewUser)
+//Getting all clients
+router.get('/clients', verifyToken, (req, res) => {
+
+    jwt.verify(req.auth, 'secretKey', async (err, data) => {
+        if (err) {
+            res.send("err");
+        } else {
+            const viewUser = await client.find()
+            res.send(viewUser)
+        }
+    })
 })
 
 // Getting user data

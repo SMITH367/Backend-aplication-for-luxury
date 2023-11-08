@@ -17,7 +17,7 @@ app.use((req, res, next) => {
 app.use(express.json())
 
 app.use(require('./routes/boats'))
-app.use(require('./routes/user'))
+app.use(require('./routes/users'))
 app.use(require('./routes/cotizations'))
 
 
