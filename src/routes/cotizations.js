@@ -37,12 +37,11 @@ router.post('/cotizations/create', async (req, res) => {
 
     const dataClient = {
         name: req.body.clientName,
-        identification: req.body.clientIdentification,
         email: req.body.clientEmail,
         phoneNumber: req.body.clientPhoneNumber,
     }
 
-    const newUser = new client(dataClient)
+    const newClient = new client(dataClient)
 
     await newCotization.save()
 
@@ -51,9 +50,9 @@ router.post('/cotizations/create', async (req, res) => {
     })
 
     if(validateClient === null)
-        await newUser.save()
+        await newClient.save()
 
-    res.sendStatus(200)
+    res.json({confirmation:true})
 
 })
 

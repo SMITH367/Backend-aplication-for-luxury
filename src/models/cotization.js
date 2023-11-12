@@ -5,7 +5,6 @@ const Schema = mongose.Schema
 const cotization = new Schema({
 
     clientName: String,
-    clientIdentification: String,
     clientEmail:String,
     clientPhoneNumber:String,
     boat: String,
